@@ -33,30 +33,6 @@ void writerThread(int id) {
     int j = dis(gen);
     S[j] = readerThread(id);
 }
-/* void worker(int id) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, 99999);
-
-    for (int i = 0; i < 10000; i++) {
-        int j = dis(gen);
-        int i1 = (i + 1) % 100000;
-        int i2 = (i + 2) % 100000;
-
-        //使用了一个std::vector<std::mutex>来表示每个元素的锁。
-        //在读写元素时，使用std::lock_guard来自动获取对应元素的锁，并返回和更新元素的值。
-        // std::lock_guard对象构造时，自动调用mtx.lock()进行上锁
-        // std::lock_guard对象析构时，自动调用mtx.unlock()释放锁
-        //读取S(i), S(i+1), S(i+2)的值
-        std::lock_guard<std::mutex> lock(mtx);
-        int s_i = S[i];
-        int s_i1 = S[i1]; 
-        int s_i2 = S[i2];
-
-        // 写S(j)
-        S[j] = s_i + s_i1 + s_i2;
-    }
-} */
 
 int main() {
     int M = 5; // workers数量
